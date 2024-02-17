@@ -14,7 +14,7 @@ if __name__ == '__main__':
     scenario_name = args.scenario.lower()
     assert scenario_name in scenario_names, '--scenario argument is invalid!'
     
-    env = gym.make(scenario_name + 'Scenario-v0', goal=len(goals[scenario_name]))
+    env = gym.make(scenario_name + 'Scenario-v0', goal=len(goals[scenario_name]), disable_env_checker=True)
     env.seed(int(np.random.rand()*1e6))
     o, d = env.reset(), False
     env.render()

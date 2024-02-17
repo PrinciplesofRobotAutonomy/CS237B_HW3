@@ -26,8 +26,8 @@ if __name__ == '__main__':
     if args.goal.lower() == 'all':
         goal_id = len(goals[scenario_name])
     else:
-        goal_id = np.argwhere(np.array(goals[scenario_name])==args.goal.lower())[0,0] # hmm, unreadable
-    env = gym.make(scenario_name + 'Scenario-v0', goal=goal_id)
+        goal_id = np.argwhere(np.array(goals[scenario_name])==args.goal.lower())[0,0]
+    env = gym.make(scenario_name + 'Scenario-v0', goal=goal_id, disable_env_checker=True)
     
     nn_model = NN(obs_sizes[scenario_name],2)
     nn_model.load_weights('./policies/' + scenario_name + '_all_CoIL')

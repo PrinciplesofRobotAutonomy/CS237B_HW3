@@ -17,9 +17,9 @@ if __name__ == '__main__':
     assert scenario_name in scenario_names, '--scenario argument is invalid!'
 
     if args.goal.lower() == 'all':
-        env = gym.make(scenario_name + 'Scenario-v0', goal=len(goals[scenario_name]))
+        env = gym.make(scenario_name + 'Scenario-v0', goal=len(goals[scenario_name]), disable_env_checker=True)
     else:
-        env = gym.make(scenario_name + 'Scenario-v0', goal=np.argwhere(np.array(goals[scenario_name])==args.goal.lower())[0,0]) # hmm, unreadable
+        env = gym.make(scenario_name + 'Scenario-v0', goal=np.argwhere(np.array(goals[scenario_name])==args.goal.lower())[0,0], disable_env_checker=True)
     
     nn_model = NN(obs_sizes[scenario_name],2)
     nn_model.load_weights('./policies/' + scenario_name + '_' + args.goal.lower() + '_IL')
